@@ -119,6 +119,40 @@ void sig_int(int signo,siginfo_t *siginfo, void *contexto)
 	if(x=='q')
 	{
 		exit(0);
+	}else if(x=='d')
+	{
+		int index=-1;
+		cout<<"Available ports:\n";
+		for(int i=0;i<ports.size();i++)
+		{
+			cout<<ports[i]<<"\n";
+		}
+		int p;
+		cout<<"Which you want to delete ?\n";
+		cin>>p;
+		for (int i = 0; i < ports.size(); ++i)
+		{
+			if(ports[i]==p)
+			{
+				index=i;
+				break;
+			}
+		}
+
+		if(index>-1)
+		{
+			ports.erase(ports.begin()+index);
+			for (int i = 0; i < s[index].size(); ++i)
+			{
+				close(s[index][i]);
+			}
+			s[index].clear();
+		}
+
+		limit.erase(limit.begin() + index);
+		server.erase(server.begin() + index);
+
+		cout<<"Removed and all clients disconnected\n";
 	}
 	else{
 		int p;
