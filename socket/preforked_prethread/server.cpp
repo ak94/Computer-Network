@@ -34,7 +34,7 @@ int main(int argc, char const *argv[])
 	child_id.clear();
 	child_id.resize(prefork);
 
-	signal(SIGCHLD,sig_hand);
+	//signal(SIGCHLD,sig_hand);
 
 	
 	lsfd = socket(AF_INET,SOCK_STREAM,0);
@@ -92,11 +92,12 @@ void child_server(int server_no)
 	
 	struct timeval tv;
 
-	tv.tv_sec = 30;
+	tv.tv_sec = 2;
 	tv.tv_usec =0;
 	std::vector<int> nsfd;
 	nsfd.clear();
 	int retval;
+
 	while(1)
 	{
 		FD_ZERO(&rfds);
@@ -123,6 +124,12 @@ void child_server(int server_no)
 		{
 			char buffer[2000];
 			memset(buffer,'\0',sizeof(buffer));
+			if(FD_ISSET(lsfd,&rfds))
+			{
+				//cout<<"Client request came\n";
+				nsfd.push_back(accept(lsfd,(struct sockaddr *)&client,(socklen_t *)&c_len));
+				cout<<"accept complete "<<nsfd.back()<<"\n";
+			}
 			for (int i = 0; i < nsfd.size(); ++i)
 			{
 				
@@ -131,17 +138,12 @@ void child_server(int server_no)
 					recv(nsfd[i],buffer,sizeof(buffer),0);
 					cout<<"echo to nsfd no"<<nsfd[i]<<"\n";
 					send(nsfd[i],buffer,sizeof(buffer),0);
-					close(nsfd[i]);
-					nsfd.erase(nsfd.begin()+i);
+					//close(nsfd[i]);
+					//nsfd.erase(nsfd.begin()+i);
 				}
 			}
 
-			if(FD_ISSET(lsfd,&rfds))
-			{
-				cout<<"Client request came\n";
-				nsfd.push_back(accept(lsfd,(struct sockaddr *)&client,(socklen_t *)&c_len));
-				cout<<"accept complete "<<nsfd.back()<<"\n";
-			}
+			
 		}else if(retval<0)
 		{
 			perror("select()");
