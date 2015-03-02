@@ -1,0 +1,1 @@
+cmd_/home/ashwani/Documents/CN/device_driver/key/key.ko := ld -r -m elf_x86_64 -T /usr/src/linux-headers-3.13.0-44-generic/scripts/module-common.lds --build-id  -o /home/ashwani/Documents/CN/device_driver/key/key.ko /home/ashwani/Documents/CN/device_driver/key/key.o /home/ashwani/Documents/CN/device_driver/key/key.mod.o
