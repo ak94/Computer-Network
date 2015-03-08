@@ -112,7 +112,8 @@ int main(int argc, char const *argv[])
 		{
 			cout<<"connection closed "<<nsfd<<"\n";
 			send(csfd,"r2 free",7,0);
-			exit(0);
+			nsfd = recv_file_descriptor(csfd);
+		
 		}else
 		{
 			perror("recv error");
