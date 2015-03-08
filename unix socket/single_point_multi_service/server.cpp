@@ -96,7 +96,7 @@ int main(int argc, char const *argv[])
 					perror("sendmsg error");
 					exit(0);
 				}
-				cout<<"nsfd sent\n";
+				cout<<"nsfd sent to s1\n";
 				close(nsfd);
 			}else
 			{
@@ -118,7 +118,7 @@ int main(int argc, char const *argv[])
 						perror("sendmsg error");
 						exit(0);
 					}
-					cout<<"nsfd sent\n";
+					cout<<"nsfd sent to s1\n";
 					close(nsfd);
 				}else
 				{
@@ -135,7 +135,7 @@ int main(int argc, char const *argv[])
 					perror("sendmsg error");
 					exit(0);
 				}
-				cout<<"nsfd sent\n";
+				cout<<"nsfd sent to s2\n";
 				close(nsfd);
 			}else
 			{	
@@ -157,7 +157,7 @@ int main(int argc, char const *argv[])
 						perror("sendmsg error");
 						exit(0);
 					}
-					cout<<"nsfd sent\n";
+					cout<<"nsfd sent to s2\n";
 					close(nsfd);
 				}else
 				{
