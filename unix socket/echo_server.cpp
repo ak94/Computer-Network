@@ -59,14 +59,14 @@ int main(int argc, char const *argv[])
 		{
 			close(usfd);
 			char buffer[2000];
-
+			int k=csfd;
 			while(1)
 			{
 				memset(buffer,'\0',sizeof(buffer));
-				recv(csfd,buffer,sizeof(buffer),0);
+				recv(k,buffer,sizeof(buffer),0);
 				strcat(buffer," thankyou");
-				cout<<"echo to nsfd no"<<csfd<<"\n";
-				send(csfd,buffer,sizeof(buffer),0);
+				cout<<"echo to nsfd no"<<k<<"\n";
+				send(k,buffer,sizeof(buffer),0);
 			}
 		}	
 

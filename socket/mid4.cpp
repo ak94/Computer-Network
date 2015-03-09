@@ -64,7 +64,7 @@ void running()
 		//cout<<"retval "<<retval;
 		if(retval>0)
 		{
-			cout<<"yo\n";
+			//cout<<"yo\n";
 			char buffer[2000];
 			memset(buffer,'\0',sizeof(buffer));
 			for (int i = 0; i < s.size(); ++i)

@@ -63,8 +63,7 @@ ssize_t read_fd(int csfd,int *recvfd)
 
 	return n;
 }
-static int
-recv_file_descriptor(int socket) /* Socket from which the file descriptor is read */
+static int recv_file_descriptor(int socket) /* Socket from which the file descriptor is read */
 {
  int sent_fd;
  struct msghdr message;
